@@ -4,7 +4,7 @@ MODEL="openai/gpt-oss-20b"
 DOCKER_WORK_DIR="/root/spark-dev-workspace/dev/spark-infer-bench"
 YAML_CONFIG="$DOCKER_WORK_DIR/vllm-bench/vllm_blackwell.yaml"
 
-# VVLLM_USE_FLASHINFER_MOE_MXFP4_MXFP8=1 => mxfp8 activation for MoE.
+# VLLM_USE_FLASHINFER_MOE_MXFP4_MXFP8=1 => mxfp8 activation for MoE.
 docker run \
     -it --gpus all --rm \
     --ipc=host \

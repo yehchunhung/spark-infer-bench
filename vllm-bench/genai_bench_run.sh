@@ -1,7 +1,7 @@
 #!/bin/bash
 MODEL="openai/gpt-oss-20b"
 MAX_INPUT_LEN=2048
-MAX_OUTPUT_LEN=256
+MAX_OUTPUT_LEN=128
 ACT_PRECISION=mxfp8
 MAX_ITER=1
 
@@ -13,7 +13,7 @@ for ((i=1; i<=MAX_ITER; i++)); do
     
     TRANSFORMERS_VERBOSITY=error \
     genai-bench benchmark \
-        --api-backend vllm \
+        --api-backend openai \
         --api-base "http://localhost:8000" \
         --api-key "xxx" \
         --api-model-name $MODEL \
@@ -23,5 +23,5 @@ for ((i=1; i<=MAX_ITER; i++)); do
         --max-time-per-run 10 \
         --max-requests-per-run 300 \
         --experiment-folder-name $OUTPUT_DIR \
-        --additional-request-params="{'reasoning_effort': 'medium', 'max_tokens': $((MAX_OUTPUT_LEN * 4))}"
+        --additional-request-params="{\"reasoning_effort\": \"medium\", \"max_tokens\": $((MAX_OUTPUT_LEN * 8))}"
 done

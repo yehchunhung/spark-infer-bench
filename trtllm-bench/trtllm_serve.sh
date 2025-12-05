@@ -1,12 +1,10 @@
 #!/bin/bash
-MODEL="openai/gpt-oss-120b"
+MODEL="openai/gpt-oss-20b"
 DOCKER_WORK_DIR="/root/spark-dev-workspace/dev/spark-infer-bench"
 
 # WARNING: 
 # 1. don't use "-p 8000:8000". use "--network host" instead 
 # 2. https://github.com/vllm-project/vllm/issues/22525#issuecomment-3172271363
-
-# --env "HF_TOKEN=$HF_TOKEN" \
 docker run \
     -it --gpus all --rm \
     --ipc=host \
@@ -19,5 +17,5 @@ docker run \
     trtllm-serve $MODEL \
         --max_batch_size 64 \
         --trust_remote_code \
-        --port 8000 \
+        --port 8001 \
         --extra_llm_api_options $DOCKER_WORK_DIR/trtllm-bench/trtllm_config.yml

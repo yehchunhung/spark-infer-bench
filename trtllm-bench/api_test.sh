@@ -1,9 +1,9 @@
 #!/bin/bash
 MODEL_HANDLE="openai/gpt-oss-20b"
-PORT=8000
+PORT=8001
 
-# -s
-curl -X POST http://localhost:$PORT/v1/chat/completions \
+# -s; -X POST
+curl -s http://localhost:$PORT/v1/chat/completions \
   -H "Content-Type: application/json" \
   -d '{
     "model": "'"$MODEL_HANDLE"'",
