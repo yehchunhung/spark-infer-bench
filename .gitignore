@@ -1,0 +1,22 @@
+# Sensitive files
+hf_token.txt
+
+# Virtualenvs
+hf-cli/
+infer-bench/
+
+# Logs/Results
+*/results/*
+*.csv
+*.json
+*.html
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Archived
+*/archived/

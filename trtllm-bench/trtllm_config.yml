@@ -1,0 +1,14 @@
+# https://build.nvidia.com/spark/trt-llm/instructions
+print_iter_log: false
+kv_cache_config:
+  dtype: "auto"
+  free_gpu_memory_fraction: 0.9
+cuda_graph_config:
+  enable_padding: true
+disable_overlap_scheduler: true
+
+# low latency: TRTLLM; max throughput: CUTLASS
+# https://nvidia.github.io/TensorRT-LLM/blogs/tech_blog/blog9_Deploying_GPT_OSS_on_TRTLLM.html#low-latency-use-case
+moe_config:
+    # TRTLLM failed => RuntimeError: Only SM100 is supported by FP4 block scale MOE
+    backend: CUTLASS
