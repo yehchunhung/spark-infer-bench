@@ -1,0 +1,25 @@
+# https://docs.vllm.ai/projects/recipes/en/latest/OpenAI/GPT-OSS.html#prepare-the-config-file
+# don't use kv-cache-dtype: bfloat16, which shows the unsupported error
+# use kv-cache-dtype: auto to use precision from model_config, which is bfloat16
+kv-cache-dtype: auto
+
+compilation-config: '{
+    "pass_config": {"enable_fi_allreduce_fusion":true, "enable_noop":true},
+    "max_cudagraph_capture_size": 2048
+}'
+async-scheduling: true
+no-enable-prefix-caching: true
+max-num-batched-tokens: 8192
+max-num-seqs: 256
+
+# BUG: unrecognized args?
+# stream_interval: 20
+
+# Appendix
+# kv-cache-dtype: auto
+# (EngineCore_DP0 pid=168) INFO 12-12 05:36:41 [kv_cache_utils.py:1087] GPU KV cache size: 1,611,152 tokens
+# (EngineCore_DP0 pid=168) INFO 12-12 05:36:41 [kv_cache_utils.py:1091] Maximum concurrency for 131,072 tokens per request: 23.11x
+
+# kv-cache_dtype: fp8
+# (EngineCore_DP0 pid=168) INFO 12-12 05:50:13 [kv_cache_utils.py:1087] GPU KV cache size: 3,199,536 tokens
+# (EngineCore_DP0 pid=168) INFO 12-12 05:50:13 [kv_cache_utils.py:1091] Maximum concurrency for 131,072 tokens per request: 45.90x

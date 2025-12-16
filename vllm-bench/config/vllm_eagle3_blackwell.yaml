@@ -1,0 +1,26 @@
+# adapted from vLLM recipe
+# https://docs.vllm.ai/projects/recipes/en/latest/OpenAI/GPT-OSS.html#prepare-the-config-file
+kv-cache-dtype: auto
+compilation-config: '{
+  "pass_config":{"enable_fi_allreduce_fusion":true,"enable_noop":true},
+  "max_cudagraph_capture_size": 2048
+}'
+
+# NOTE: currently, speculative decoding is not supported with async scheduling.
+async-scheduling: false
+
+no-enable-prefix-caching: true
+max-num-batched-tokens: 8192
+max-num-seqs: 256
+
+# vLLM not supported in 25.11
+# NotImplementedError: Mxfp4 linear layer is not implemented
+# related issue: https://github.com/vllm-project/vllm/issues/26328
+speculative-config: '{
+  "model":"nvidia/gpt-oss-120b-Eagle3",
+  "num_speculative_tokens":3,
+  "method":"eagle3",
+  "draft_tensor_parallel_size":1
+}'
+
+# stream-interval: 20

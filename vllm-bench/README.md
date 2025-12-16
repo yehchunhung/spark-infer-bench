@@ -54,7 +54,7 @@ See the `vllm_blackwell.yaml` configuration file for model-specific parameters a
 
 ## Troubleshooting
 
-### Encounter "openai_harmony.HarmonyError: Unexpected token 200002 while expecting start token 200006"
+### 1. Encounter `openai_harmony.HarmonyError: Unexpected token 200002 while expecting start token 200006`
 
 This error arises because vLLM/openai-harmony expects control tokens (BOS/EOS) beyond the specified `MAX_OUTPUT_LEN`. When `max_tokens` equals this limit (e.g., 128), the output buffer fills before essential tokens can be generated, causing a mismatch.
 
@@ -69,7 +69,7 @@ Example for `MAX_OUTPUT_LEN=128`:
 
 This ensures sufficient buffer space for control tokens while maintaining benchmark accuracy.
 
-### Docker Permission Errors
+### 2. Docker Permission Errors
 
 If Docker commands fail due to permissions, add your user to the Docker group:
 
@@ -79,7 +79,7 @@ sudo usermod -aG docker $USER
 
 Log out and back in for changes to apply.
 
-### Model Download Failures
+### 3. Model Download Failures
 
 Ensure your Hugging Face API token is properly configured:
 
@@ -87,10 +87,12 @@ Ensure your Hugging Face API token is properly configured:
 export HUGGINGFACE_TOKEN=your_api_token
 ```
 
-## FAQ
+### 4. How do I benchmark a different model?
 
-**Q: How do I benchmark a different model?**  
-A: Modify the `MODEL_ID` variable in `vllm_serve.sh` to point to your desired model on Hugging Face.
+Modify the `MODEL_ID` variable in `vllm_serve.sh` to point to your desired model on Hugging Face.
 
-**Q: Can I run benchmarks without Docker?**  
-A: This setup currently relies on Docker for model serving. Native execution would require altering the serving script.
+### 5. How to set KV cache as `bfloat16`?
+
+Set `kv-cache-dtype: auto` in `vllm_blackwell.yaml`.  
+> [!WARNING]
+> Don't use `kv-cache-dtype: bfloat16`.
