@@ -8,8 +8,9 @@ infer-bench/
 # Logs/Results
 */results/*
 *.csv
-*.json
+# *.json
 *.html
+*.txt
 
 # Python
 __pycache__/
