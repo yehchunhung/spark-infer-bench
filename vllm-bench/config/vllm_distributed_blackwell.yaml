@@ -1,6 +1,7 @@
+uvicorn-log-level: "info"
 kv-cache-dtype: auto
 
-# "pass_config":{"enable_fi_allreduce_fusion":true}, -> leads to error 
+# "pass_config":{"enable_fi_allreduce_fusion":true}, -> leads to error
 compilation-config: '{
     "pass_config": {"enable_noop":true},
     "max_cudagraph_capture_size": 2048

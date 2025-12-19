@@ -5,7 +5,7 @@ MAX_INPUT_LEN=2048
 MAX_OUTPUT_LEN=128
 
 ATTN_BACKEND="triton_attn"
-EXP_DIR="kv-bf16-act-bf16-2-nodes"
+EXP_DIR="kv-bf16-act-bf16-dp2-ep/concurrency_256"
 
 MAX_ITER=1
 
@@ -19,7 +19,7 @@ for ((i=1; i<=MAX_ITER; i++)); do
     # don't set api-beckend as vllm, otherwise usual harmony parsing error may occur
     # https://github.com/vllm-project/vllm/issues/22519
     TRANSFORMERS_VERBOSITY=error \
-    GENAI_BENCH_LOGGING_LEVEL=DEBUG \
+    GENAI_BENCH_LOGGING_LEVEL=INFO \
     genai-bench benchmark \
         --api-backend openai \
         --api-base "http://localhost:8000" \
@@ -32,5 +32,6 @@ for ((i=1; i<=MAX_ITER; i++)); do
         --max-requests-per-run 300 \
         --log-dir $OUTPUT_DIR \
         --experiment-folder-name $OUTPUT_DIR \
-        --additional-request-params="{\"reasoning_effort\": \"low\", \"max_tokens\": $((MAX_OUTPUT_LEN * 8))}"
+        --additional-request-params="{\"reasoning_effort\": \"low\", \"max_tokens\": $((MAX_OUTPUT_LEN * 8))}" \
+        --num-concurrency 256
 done
