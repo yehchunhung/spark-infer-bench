@@ -296,14 +296,16 @@ ls -la results/
 mkdir -p results/test && touch results/test/test.txt
 ```
 
-## 🔗 Framework Resources
+## 🔗 Resources
 
-| Framework | Documentation | Notes |
+| Resource | Documentation | Notes |
 |-----------|---------------|-------|
-| **TensorRT-LLM** | [docs](https://github.com/NVIDIA/TensorRT-LLM) | Spark-optimized, SM100 support |
+| **TensorRT-LLM** | [docs](https://github.com/NVIDIA/TensorRT-LLM) | Nvidia GPU optimized |
 | **vLLM** | [docs](https://github.com/vllm-project/vllm) | High throughput, PagedAttention |
 | **SGLang** | [docs](https://github.com/sgl-project/sglang) | Fast radix attention |
 | **GenAI-Bench** | [docs](https://github.com/sgl-project/genai-bench) | Unified benchmarking |
+| **NVIDIA/dgx-spark-playbooks** | [docs](https://github.com/NVIDIA/dgx-spark-playbooks) | Collection of step-by-step playbooks for NVIDIA DGX Spark. |
+
 
 ---
 
