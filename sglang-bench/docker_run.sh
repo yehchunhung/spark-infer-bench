@@ -1,7 +1,5 @@
 #!/bin/bash
-HF_TOKEN="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"
-DOCKER_WORK_DIR="spark-dev-workspace/dev/sglang-bench"
-TIKTOKEN_DIR="spark-dev-workspace/dev/trtllm-bench/tiktoken"
+BASE_WORK_DIR="spark-dev-workspace/dev/spark-infer-bench"
 
 # attention-backend: "flashinfer" unspported in GptOssForCausalLM
 docker run \
@@ -10,9 +8,8 @@ docker run \
     --ulimit memlock=-1 --ulimit stack=67108864 \
     -p 8000:8000 \
     -v ~/.cache/huggingface:/root/.cache/huggingface \
-    -v ~/$DOCKER_WORK_DIR:/root/$DOCKER_WORK_DIR \
-    -v ~/$TIKTOKEN_DIR:/root/$TIKTOKEN_DIR \
-    --env "HF_TOKEN=$HF_TOKEN" \
-    --env "TIKTOKEN_ENCODINGS_BASE=/root/$TIKTOKEN_DIR" \
+    -v ~/$BASE_WORK_DIR/sglang-bench:/root/$BASE_WORK_DIR/sglang-bench \
+    -v ~/$BASE_WORK_DIR/tiktoken:/root/$BASE_WORK_DIR/tiktoken \
+    --env "TIKTOKEN_ENCODINGS_BASE=/root/$BASE_WORK_DIR/tiktoken" \
     lmsysorg/sglang:spark \
     bash
