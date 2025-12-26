@@ -1,0 +1,29 @@
+# default setting for Spark
+# https://build.nvidia.com/spark/trt-llm/instructions
+print_iter_log: false
+kv_cache_config:
+  dtype: auto
+  free_gpu_memory_fraction: 0.9
+  enable_block_reuse: false # true by default
+
+disable_overlap_scheduler: true
+
+# enable chunked prefill to ensure usage data is returned
+# https://github.com/NVIDIA/TensorRT-LLM/blob/e06c58264833b91f1eee35598e950a996aac4e27/docs/source/features/long-sequence.md#chunked-context
+enable_chunked_prefill: true
+
+# low latency: TRTLLM; max throughput: CUTLASS
+# https://nvidia.github.io/TensorRT-LLM/blogs/tech_blog/blog9_Deploying_GPT_OSS_on_TRTLLM.html#low-latency-use-case
+# more backend option: https://github.com/NVIDIA/TensorRT-LLM/blob/5d71f662c3010a276707e8ca37b008c641295d87/tensorrt_llm/llmapi/llm_args.py#L410
+# cli
+moe_config:
+    backend: CUTLASS # default value
+
+# https://nvidia.github.io/TensorRT-LLM/1.0.0rc3/advanced/expert-parallelism.html#how-to-enable
+# https://nvidia.github.io/TensorRT-LLM/1.2.0rc4/features/parallel-strategy.html#how-to-enable-moe-parallelism
+tensor_parallel_size: 2
+moe_tensor_parallel_size: 1
+moe_expert_parallel_size: 2
+
+# https://nvidia.github.io/TensorRT-LLM/1.2.0rc4/features/parallel-strategy.html#how-to-enable-attention-parallelism
+enable_attention_dp: false

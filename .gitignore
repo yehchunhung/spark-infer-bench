@@ -1,5 +1,6 @@
 # Sensitive files
 hf_token.txt
+openmpi-hostfile
 
 # Virtualenvs
 hf-cli/
@@ -20,4 +21,4 @@ __pycache__/
 .Python
 
 # Archived
-*/archived/
+*/archived/*
