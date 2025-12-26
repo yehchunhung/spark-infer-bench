@@ -2,7 +2,7 @@
 MODEL="openai/gpt-oss-20b" # "nvidia/Qwen3-30B-A3B-NVFP4"
 HF_TOKEN=""
 DOCKER_WORK_DIR="/root/spark-dev-workspace/dev/spark-infer-bench"
-CONFIG=$DOCKER_WORK_DIR/trtllm-bench/trtllm_config_distributed.yml
+CONFIG=$DOCKER_WORK_DIR/trtllm-bench/config/trtllm_config_distributed.yml
 
 export TRTLLM_MN_CONTAINER="trtllm-multinode"
 

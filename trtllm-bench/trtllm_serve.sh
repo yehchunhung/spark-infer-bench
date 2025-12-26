@@ -1,6 +1,7 @@
 #!/bin/bash
 MODEL="openai/gpt-oss-20b"
 DOCKER_WORK_DIR="/root/spark-dev-workspace/dev/spark-infer-bench"
+CONFIG=$DOCKER_WORK_DIR/trtllm-bench/config/trtllm_config.yml
 
 # WARNING: 
 # 1. don't use "-p 8000:8000". use "--network host" instead 
@@ -18,4 +19,4 @@ docker run \
         --max_batch_size 64 \
         --trust_remote_code \
         --port 8001 \
-        --extra_llm_api_options $DOCKER_WORK_DIR/trtllm-bench/trtllm_config.yml
+        --extra_llm_api_options $CONFIG
