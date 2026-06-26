@@ -8,10 +8,15 @@ infer-bench/
 
 # Logs/Results
 */results/*
+nccl-bench/nsys-results/*
 *.csv
 # *.json
 *.html
 *.txt
+
+# Large compiled/binary files
+nccl-bench/nccl/
+nccl-bench/nccl-tests/
 nccl-bench/nsys-results/*
 
 # Python

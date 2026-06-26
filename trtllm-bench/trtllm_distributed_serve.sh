@@ -1,6 +1,6 @@
 #!/bin/bash
 MODEL="openai/gpt-oss-20b" # "nvidia/Qwen3-30B-A3B-NVFP4"
-HF_TOKEN="REMOVED_SECRET"
+HF_TOKEN="${HF_TOKEN:?Set HF_TOKEN env var}"
 DOCKER_WORK_DIR="/root/spark-dev-workspace/dev/spark-infer-bench"
 CONFIG=$DOCKER_WORK_DIR/trtllm-bench/config/trtllm_config_distributed.yml
 

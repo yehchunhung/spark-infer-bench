@@ -9,7 +9,7 @@ DOCKER_WORK_DIR="/root/spark-dev-workspace/dev/spark-infer-bench"
 YAML_CONFIG="$DOCKER_WORK_DIR/vllm-bench/config/vllm_distributed_blackwell.yaml"
 
 VLLM_CONTAINER=$(docker ps --format '{{.Names}}') # $(docker ps --format '{{.Names}}' | grep -E '^node-[0-9]+$')
-HF_TOKEN="REMOVED_SECRET"
+HF_TOKEN="${HF_TOKEN:?Set HF_TOKEN env var}"
 
 # check if the YAML config file exists in the container
 if docker exec $VLLM_CONTAINER test -f "$YAML_CONFIG"; then
