@@ -14,7 +14,7 @@ nccl-bench/nsys-results/*
 *.html
 *.txt
 
-# Large compiled/binary files
+# nccl repos (clone and build manually, see nccl-bench/README.md)
 nccl-bench/nccl/
 nccl-bench/nccl-tests/
 nccl-bench/nsys-results/*
