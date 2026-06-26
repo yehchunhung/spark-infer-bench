@@ -1,6 +1,6 @@
 #!/bin/bash
 MODEL="openai/gpt-oss-20b" # "nvidia/Qwen3-30B-A3B-NVFP4"
-HF_TOKEN=""
+HF_TOKEN="REMOVED_SECRET"
 DOCKER_WORK_DIR="/root/spark-dev-workspace/dev/spark-infer-bench"
 CONFIG=$DOCKER_WORK_DIR/trtllm-bench/config/trtllm_config_distributed.yml
 
@@ -34,7 +34,6 @@ docker exec "${TRTLLM_MN_CONTAINER}" bash -c \
     'for host in $(cat /etc/openmpi-hostfile); do scp -o StrictHostKeyChecking=no /tmp/mpi-wrapper.sh $host:/tmp/mpi-wrapper.sh 2>/dev/null || true; done'
 
 # -e HF_TOKEN=$HF_TOKEN \
-# --tp_size 2 \
 docker exec \
     -e MODEL=$MODEL \
     -e CONFIG=$CONFIG \

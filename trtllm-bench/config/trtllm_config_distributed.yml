@@ -21,9 +21,9 @@ moe_config:
 
 # https://nvidia.github.io/TensorRT-LLM/1.0.0rc3/advanced/expert-parallelism.html#how-to-enable
 # https://nvidia.github.io/TensorRT-LLM/1.2.0rc4/features/parallel-strategy.html#how-to-enable-moe-parallelism
-tensor_parallel_size: 2
+tensor_parallel_size: 1
 moe_tensor_parallel_size: 1
-moe_expert_parallel_size: 2
+moe_expert_parallel_size: 1
 
 # https://nvidia.github.io/TensorRT-LLM/1.2.0rc4/features/parallel-strategy.html#how-to-enable-attention-parallelism
-enable_attention_dp: false
+enable_attention_dp: false # only works when tensor_parallel_size > 1

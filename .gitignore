@@ -12,6 +12,7 @@ infer-bench/
 # *.json
 *.html
 *.txt
+nccl-bench/nsys-results/*
 
 # Python
 __pycache__/
@@ -22,3 +23,7 @@ __pycache__/
 
 # Archived
 */archived/*
+
+# Not my stuff
+jeremy-sglang-baremetal/*
+jeremy-trtllm-baremetal/*

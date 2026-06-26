@@ -15,8 +15,9 @@ docker run \
     -v ~/spark-dev-workspace/dev/spark-infer-bench:$DOCKER_WORK_DIR \
     --env "TIKTOKEN_ENCODINGS_BASE=$DOCKER_WORK_DIR/tiktoken" \
     nvcr.io/nvidia/tensorrt-llm/release:spark-single-gpu-dev \
-    trtllm-serve $MODEL \
-        --max_batch_size 64 \
-        --trust_remote_code \
-        --port 8001 \
-        --extra_llm_api_options $CONFIG
+    bash
+    # trtllm-serve $MODEL \
+    #     --max_batch_size 64 \
+    #     --trust_remote_code \
+    #     --port 8001 \
+    #     --extra_llm_api_options $CONFIG

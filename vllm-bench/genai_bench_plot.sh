@@ -1,5 +1,5 @@
 #!/bin/bash
-TARGET_DIR="./results/gpt-oss-20b/genai-bench/triton_attn/benchmark-plot/1node_vs_2node/tp2_eager_vs_dp2_eager"
+TARGET_DIR="./results/gpt-oss-20b/genai-bench/triton_attn/benchmark-plot/1node_vs_2node/tp2_vs_dp2_vs_1p1d"
 
 # use group-key to determine the legend name for each class
 # available key are in experiment_metadata.json

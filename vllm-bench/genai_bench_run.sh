@@ -3,9 +3,9 @@ MODEL_NAME="gpt-oss-20b"
 MODEL="openai/$MODEL_NAME"
 MAX_INPUT_LEN=2048
 MAX_OUTPUT_LEN=128
-
+PORT=8001 # 8000
 ATTN_BACKEND="triton_attn"
-EXP_DIR="kv-bf16-act-bf16-dp2-ep/concurrency_256"
+EXP_DIR="kv-bf16-act-bf16-1p-1d-nccl"
 
 MAX_ITER=1
 
@@ -22,7 +22,7 @@ for ((i=1; i<=MAX_ITER; i++)); do
     GENAI_BENCH_LOGGING_LEVEL=INFO \
     genai-bench benchmark \
         --api-backend openai \
-        --api-base "http://localhost:8000" \
+        --api-base "http://localhost:$PORT" \
         --api-key "xxx" \
         --api-model-name $MODEL \
         --model-tokenizer $MODEL \
@@ -32,6 +32,5 @@ for ((i=1; i<=MAX_ITER; i++)); do
         --max-requests-per-run 300 \
         --log-dir $OUTPUT_DIR \
         --experiment-folder-name $OUTPUT_DIR \
-        --additional-request-params="{\"reasoning_effort\": \"low\", \"max_tokens\": $((MAX_OUTPUT_LEN * 8))}" \
-        --num-concurrency 256
+        --additional-request-params="{\"reasoning_effort\": \"low\", \"max_tokens\": $((MAX_OUTPUT_LEN * 8))}"
 done

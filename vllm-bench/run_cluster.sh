@@ -122,8 +122,10 @@ fi
 # -v HF_HOME: Mounts HuggingFace cache to avoid re-downloading models
 
 # 12/16 Update: we need additional mount for current directory
+# 12/26 Update: add IB device for multi-node communication
 DOCKER_WORK_DIR="/root/spark-dev-workspace/dev/spark-infer-bench"
 
+# --device /dev/infiniband:/dev/infiniband \
 docker run \
     --entrypoint /bin/bash \
     --network host \
